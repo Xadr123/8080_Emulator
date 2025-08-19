@@ -1,7 +1,4 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdint.h>
 
 #include "8080Disassembler.h"
 
@@ -20,15 +17,17 @@ Resources:
 // 8080 Disassembler, prints the opcode assembly and returns the number of bytes used by a given opcode.
 // This is 1 for most opcodes from the 8080, however some do use up to 3.
 
-int Disassemble8080Opcode(unsigned char *stackPointer, int programCounter)
+int Disassemble8080Opcode(unsigned char* stackPointer, int programCounter)
 {
 	// opcode[1]/opcode[2] are used to print out opcodes where more than 1 byte is used.
-	unsigned char *opcode = &stackPointer[programCounter];
+	unsigned char* opcode = &stackPointer[programCounter];
 
 	// Some codes use more than one byte, this is changed when needed.
 	int opBytes = 1;
 
+	// Current memory address
 	printf("%04x - ", programCounter);
+
 	switch (*opcode)
 	{
 	case 0x00: 
